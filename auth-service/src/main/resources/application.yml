@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/auth_service
+    username: admin
+    password: admin
+
+  flyway:
+    url: jdbc:mariadb://localhost:3306/auth_service?currentSchema=app
+    user: admin
+    password: admin

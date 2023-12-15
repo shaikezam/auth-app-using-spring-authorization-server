@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  db:
+    container_name: db
+    build: db
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: admin
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: admin
+      MARIADB_DATABASE: application
+    ports:
+      - "3306:3306"
+    networks:
+      - auth-app
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8083:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MARIADB_ROOT_PASSWORD: admin
+    networks:
+      - auth-app
+
+networks:
+  auth-app:
+    external: false
+    name: auth-app
